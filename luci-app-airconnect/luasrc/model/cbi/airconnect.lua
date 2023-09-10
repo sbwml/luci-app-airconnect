@@ -13,7 +13,7 @@ e.anonymous = true
 o = e:option(Flag, 'enabled', translate('Enabled'))
 o.rmempty = false
 
-o = e:option(Value, 'interface', translate('Network interface'))
+o = e:option(Value, 'interface', translate('Bind interface'))
 for t, e in ipairs(i.net.devices()) do
 	if e ~= 'lo' and not string.match(e, '^docker.*$') and not string.match(e, '^sit.*$') and not string.match(e, '^dummy.*$') and not string.match(e, '^teql.*$') and not string.match(e, '^veth.*$')  and not string.match(e, '^ztly.*$') then
 		o:value(e)

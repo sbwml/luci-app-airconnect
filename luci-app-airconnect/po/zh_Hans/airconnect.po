@@ -16,8 +16,8 @@ msgstr "获取数据中..."
 msgid "Enabled"
 msgstr "启用"
 
-msgid "Network interface"
-msgstr "网络接口"
+msgid "Bind interface"
+msgstr "绑定接口"
 
 msgid "Enable UPnP/Sonos Device Support"
 msgstr "启用 UPnP/Sonos 设备支持"
