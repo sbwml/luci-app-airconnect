@@ -2,7 +2,7 @@ msgid "AirConnect"
 msgstr "AirConnect"
 
 msgid "Send audio to UPnP/Sonos/Chromecast players using AirPlay."
-msgstr "使用 AirPlay 将音频流传输到 UPnP/Sonos 和 Chromecast 设备。"
+msgstr "通过 AirPlay 将音频流传输到 UPnP/Sonos 和 Chromecast 设备。"
 
 msgid "RUNNING"
 msgstr "运行中"
