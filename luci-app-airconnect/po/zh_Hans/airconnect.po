@@ -1,5 +1,5 @@
 msgid "AirConnect"
-msgstr "AirConnect"
+msgstr "隔空播放"
 
 msgid "Send audio to UPnP/Sonos/Chromecast players using AirPlay."
 msgstr "通过 AirPlay 将音频流传输到 UPnP/Sonos 和 Chromecast 设备。"
