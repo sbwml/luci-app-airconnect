@@ -7,12 +7,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=airconnect
-PKG_VERSION:=1.6.3
+PKG_VERSION:=1.7.0
 PKG_RELEASE=1
 
 PKG_SOURCE:=AirConnect-$(PKG_VERSION).zip
 PKG_SOURCE_URL:=https://github.com/philippe44/AirConnect/releases/download/$(PKG_VERSION)/
-PKG_HASH:=af63c7b078374c7ca2d93b81e57b42da8cddafd09d2b624c841343ba117e4b77
+PKG_HASH:=757f18963a2d5c178a48c3f7e1657b83003f0673e84aba01ddff2c61dfbc8b32
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/airconnect-$(PKG_VERSION)
 
