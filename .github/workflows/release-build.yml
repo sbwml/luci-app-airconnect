@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build ${{ matrix.arch }}
+    name: Build ${{ matrix.arch }}-${{ matrix.sdk }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -37,30 +37,38 @@ jobs:
           - mipsel_74kc
           - mipsel_mips32
           - x86_64
+        sdk:
+          - openwrt-24.10
+          - SNAPSHOT
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Building packages
-        uses: sbwml/openwrt-gh-action-sdk@master
+        uses: sbwml/openwrt-gh-action-sdk@main
         env:
-          ARCH: ${{ matrix.arch }}-openwrt-22.03
+          ARCH: ${{ matrix.arch }}-${{ matrix.sdk }}
           FEEDNAME: packages_ci
           PACKAGES: luci-app-airconnect
           NO_REFRESH_CHECK: true
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ matrix.arch }}
-          path: bin/packages/${{ matrix.arch }}/packages_ci/*.ipk
+      - name: Create compress files
+        continue-on-error: true
+        run: |
+          if [ "${{ matrix.arch }}" = "riscv64_riscv64" ] && [ "${{ matrix.sdk }}" = "SNAPSHOT" ]; then
+            tar -zcvf ${{ matrix.sdk }}-${{ matrix.arch }}.tar.gz -C bin/packages/riscv64_generic/ packages_ci
+          else
+            tar -zcvf ${{ matrix.sdk }}-${{ matrix.arch }}.tar.gz -C bin/packages/${{ matrix.arch }}/ packages_ci
+          fi
 
       - name: Upload packages
         uses: ncipollo/release-action@v1
         with:
+          name: ${{ github.ref_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
           allowUpdates: true
           replacesArtifacts: true
-          artifacts: "bin/packages/${{ matrix.arch }}/packages_ci/*.ipk"
+          prerelease: false
+          artifacts: "${{ matrix.sdk }}-${{ matrix.arch }}.tar.gz"
